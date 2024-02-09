@@ -1,0 +1,10 @@
+read_liberty -lib sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mux4x1.v
+synth -top mux4x1
+dfflibmap -liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+clean
+flatten
+write_verilog -noattr netlist_mux4x1.v
+tee -o report_mux4x1.txt stat -liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+write_json mux4x1.json
